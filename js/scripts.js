@@ -1,3 +1,4 @@
+let pokemonRepository = (function(){
 let pokemonList = [
 {
     name: 'pikachu',
@@ -16,12 +17,28 @@ let pokemonList = [
 }
 ];
 
-//Each object within the array is represented with i. The property picked to be used is formatted as pokemonList.property
-for (let i = 0; i < pokemonList.length; i++) {
-    document.write(pokemonList[i].name + " " + "(height: " + pokemonList[i].height + ")");
-//the code within document.write is used when the height value of a pokemon exceeds >0.5
-if (pokemonList[i].height > 0.5) {
-    document.write(' - Wow! a big one!');
-}
-   document.write("<br>" + "<br>");
-}
+return {
+     getAll: function(){
+       return pokemonList;
+     },
+     add: function (item) {
+         pokemonList.push(item);
+   }
+ } 
+ })();
+
+pokemonList.forEach(function(pokemon){
+
+ console.log(pokemonRepository.getAll());
+ console.log(pokemonRepository.add({ name: 'Golem', height: 1, type: ['Rock, Ground'] }));
+
+
+ pokemonRepository.getAll().forEach(function(pokemon){
+   if (pokemon.height > 1) {
+         document.write(
+           pokemon.name +
+             "  " +
+             "  " + 
+             "(height:" +
+             "  " +
+             pokemon.height +
