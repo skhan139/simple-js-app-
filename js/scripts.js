@@ -40,12 +40,13 @@ let pokemonRepository = (function () {
   function hideModal() {
     let modal = document.querySelector(".modal");
     modal.remove();
+    modalContainer.classList.remove("is-visible");
 
     if (dialogPromiseReject) {
-        dialogPromiseReject();
-        dialogPromiseReject = null;
+      dialogPromiseReject();
+      dialogPromiseReject = null;
     }
-}
+  }
 
   window.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
@@ -114,7 +115,7 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      showModal(pokemon);
     });
   }
   return {
